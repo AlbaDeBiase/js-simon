@@ -30,16 +30,17 @@ console.log(numeri_random);
 document.getElementById("demo").innerHTML = numeri_random;
 
 // Da lì parte un timer di 30 secondi.
-setInterval(function () {
-console.log("ciao")
-}, 3000);
-
-
 
 });
-
-
+// setTimeout(function() {
+//    $('#demo').hide();
+// }, 3000);
 // Dopo 30 secondi, vengono rimossi i numeri dalla pagina
+        setTimeout(function () {
+            $('#demo').hide();
+        }, 3000)
+
+
 
  // e l'utente deve inserire (tramite prompt)
  // i numeri che ha visto precedentemente, uno alla volta.
