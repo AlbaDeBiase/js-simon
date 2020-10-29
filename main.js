@@ -8,6 +8,7 @@
 
 
 // visualizzare 5 numeri casuali
+$(document).ready(function() {
 
 function getRandomNumber(min, max) {
     var number = Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -26,11 +27,17 @@ function getRandomNumbers(quantita, min, max) {
 // uso la funzione per ottenere 5 numeri random compresi tra 1 e 100
 var numeri_random = getRandomNumbers(5, 1, 100);
 console.log(numeri_random);
+document.getElementById("demo").innerHTML = numeri_random;
 
 // Da lì parte un timer di 30 secondi.
 setInterval(function () {
-// alert('Hello');
+console.log("ciao")
 }, 3000);
+
+
+
+});
+
 
 // Dopo 30 secondi, vengono rimossi i numeri dalla pagina
 
