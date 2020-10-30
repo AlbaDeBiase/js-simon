@@ -31,7 +31,7 @@ document.getElementById("demo").innerHTML = numeri_random;
 
 // Da lì parte un timer di 30 secondi.
 
-});
+
 // setTimeout(function() {
 //    $('#demo').hide();
 // }, 3000);
@@ -40,7 +40,20 @@ document.getElementById("demo").innerHTML = numeri_random;
             $('#demo').hide();
         }, 3000)
 
+// e l'utente deve inserire (tramite prompt)
+// i numeri che ha visto precedentemente, uno alla volta.
+var numeriVisti = parseInt(prompt(numeri_random));
+console.log(numeriVisti);
 
+// numeriVisti.forEach(visti => console.log(visti))
+// document.getElementById("visti").innerHTML = numeriVisti;
 
- // e l'utente deve inserire (tramite prompt)
- // i numeri che ha visto precedentemente, uno alla volta.
+   $('.numeriVisti').each(function(posizione) {
+       posizione++;
+       $(this).html('<span>numero: ' + posizione + '</span>');
+// Dopo che sono stati inseriti i 5 numeri,
+ // il software dice quanti e quali dei numeri da indovinare
+ // sono stati individuati.
+
+})
+});
