@@ -10,50 +10,88 @@
 // visualizzare 5 numeri casuali
 $(document).ready(function() {
 
-function getRandomNumber(min, max) {
-    var number = Math.floor(Math.random() * (max - min + 1) ) + min;
-    return number;
-}
-
-function getRandomNumbers(quantita, min, max) {
+    var tempo= 30;
     var numeri = [];
-    for (var i = 0; i < quantita; i++) {
-        var numero_random = getRandomNumber(min, max);
+    while(numeri.length < 5) {
+        var numero_random = getRandomNumber(1, 100);
+        if(!numeri.includes(numero_random)) {
         numeri.push(numero_random);
     }
-    return numeri;
 }
+    console.log("numeri da indovinare:")
+    console.log (numeri);
+
 
 // uso la funzione per ottenere 5 numeri random compresi tra 1 e 100
-var numeri_random = getRandomNumbers(5, 1, 100);
-console.log(numeri_random);
-document.getElementById("demo").innerHTML = numeri_random;
+var stringa_random = numeri.join(" - ");
+
+// document.getElementById("demo").innerHTML = stringa_random;
+$("#numeriDaIndovinare").text(stringa_random);
+console.log(stringa_random);
+// bonus
+ var orologio = setInterval(function(){
+tempo--;
+
+$("#tempoRimanente").text(tempo);
+console.log(tempo);
+
+
+if(tempo <= 0) {
+clearInterval(orologio);
+    }
+
+}, tempo * 1000);
 
 // Da lì parte un timer di 30 secondi.
-
-
-// setTimeout(function() {
-//    $('#demo').hide();
-// }, 3000);
 // Dopo 30 secondi, vengono rimossi i numeri dalla pagina
-        setTimeout(function () {
-            $('#demo').hide();
-        }, 3000)
+setTimeout(function () {
+    $('#demo').hide();
+    // $("demo").remove();
+}, tempo * 1000);
 
 // e l'utente deve inserire (tramite prompt)
 // i numeri che ha visto precedentemente, uno alla volta.
-var numeriVisti = parseInt(prompt(numeri_random));
-console.log(numeriVisti);
+setTimeout(function () {
 
+var numeriVisti_utente = [];
+
+for (var i = 0; i < 5 ; i++) {
+var numeriVisti = parseInt(prompt("inserisci numero che hai visto precedentemente"));
+numeriVisti_utente.push(numeriVisti);
+}
+console.log("numeriVisti:");
+console.log(numeriVisti_utente);
+
+var numeriIndovinati= [];
+for (var i = 0; i < numeri.length; i++) {
+    var numero_corrente = numeri[i];
+    console.log(numero_corrente);
+if(numeriVisti_utente.includes(numero_corrente)){
+numeriIndovinati.push(numero_corrente);
+
+    }
+}
+console.log("numeri Indovinati:");
+console.log(numeriIndovinati);
+
+$("#demo").text(stringa_random);
+var stringaNumeriUtente = numeriVisti_utente.join(" - ");
+
+$("#numeri-indovinati").text(stringaNumeriUtente);
+$('#numeri-indovinati').removeClass('hidden');
+$('#titolo-numeri-indovinati').removeClass('hidden');
+
+
+}, 3100);
 // numeriVisti.forEach(visti => console.log(visti))
 // document.getElementById("visti").innerHTML = numeriVisti;
 
-   $('.numeriVisti').each(function(posizione) {
-       posizione++;
-       $(this).html('<span>numero: ' + posizione + '</span>');
+
 // Dopo che sono stati inseriti i 5 numeri,
  // il software dice quanti e quali dei numeri da indovinare
  // sono stati individuati.
 
-})
 });
+function getRandomNumber(min, max) {
+return Math.floor(Math.random() * (max - min + 1)) + min;
+}
