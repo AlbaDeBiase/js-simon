@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     var tempo = 30;
 
-    // genero 5 numeri casuali tutti diversi
+
     var numeri = [];
     while(numeri.length < 5) {
         // genero un numero casuale
@@ -25,37 +25,36 @@ $(document).ready(function() {
     console.log('Numeri da indovinare:');
     console.log(numeri);
 
-    // unisco tutti gli elementi dell'array in una stringa
+    // unisco tutti gli elementi in un array e inserisco in pagina i numeri estrapolati
     var stringa_numeri = numeri.join(' - ');
 
-    // inserisco in pagina i numeri estratti a caso
     $('#numeriDaindovinare').text(stringa_numeri);
 
-    // faccio partire il countdown
-    var clock = setInterval(function() {
-        // decremento il tempo
+    // imposto il contdown di 30 sec
+    var orologio = setInterval(function() {
+
         tempo--;
 
-        // inserisco in pagina i secondi rimanenti
+        // stampo in pagina il tempo che rimane
         $('#tempoRimanente').text(tempo);
 
-        // se sono arrivato a 0
+        // quando arrivo a 0 si interrompe
         if(tempo <= 0) {
-            // interrompo l'interval
-            clearInterval(clock);
+
+            clearInterval(orologio);
         }
-    }, 1000); // invoco la funzione di callback ogni secondo
+    }, 1000);
+    // ogni secondo si ripete
 
     // faccio partire un timer di 30 secondi
     setTimeout(function() {
-        // rimuovo i numeri dallo schermo
-        // $('#numeriDaindovinare').addClass('hidden'); // nascondo con il css
-        $('#numeriDaindovinare').empty(); // tolgo il contenuto del div
-        // $('#numeri-random').remove(); // tolgo il div dalla pagina
+        // nascondo i numeri dalla pagina
+
+        $('#numeriDaindovinare').empty();
 
     }, tempo * 1000); // 30000 ms
 
-    // faccio partire un timer di 30,3 secondi
+
     setTimeout(function() {
 
         // chiedo all'utente i 5 numeri
@@ -74,18 +73,18 @@ $(document).ready(function() {
             var numero_corrente = numeri[i];
             // verifico un elemento alla volta, se è presente tra le scelte dell'utente
             if(numeri_utente.includes(numero_corrente)) {
-                // se l'utente ha inserito il numero in questione, me lo segno
+                // se l'utente ha inserito il numero in questione, lo salvo
                 numeri_indovinati.push(numero_corrente);
             }
-            // altrimenti, l'utente non l'ha indovinato e procedo con il successivo
+            // altrimenti, l'utente non l'ha indovinato, procedo con il successivo
         }
         console.log('numeri indovinati:');
         console.log(numeri_indovinati);
 
-        // inserisco in pagina i numeri estratti a caso
+        // inserisco in pagina i numeri dell'utente
         $('#numeri-random').text(stringa_numeri);
 
-        // inserisco in pagina i numeri inseriti dall'utente
+
         // unisco tutti gli elementi dell'array in una stringa
         var stringa_numeri_utente = numeri_utente.join(' - ');
 
@@ -93,7 +92,7 @@ $(document).ready(function() {
         $('#numeriVistiUtente').removeClass('hidden');
         $('#titoloNumeriVistiUtente').removeClass('hidden');
 
-        // inserisco in pagina i numeri indovinati
+        // stampo in pagina i numeri indovinati
         // unisco tutti gli elementi dell'array in una stringa
         var stringa_numeri_indovinati = numeri_indovinati.join(' - ');
 
